@@ -1,0 +1,263 @@
+:root {
+  --bg-primary: #000000;
+  --bg-secondary: #1a1a1a;
+  --bg-tertiary: #2d2d2d;
+  --text-primary: #ffffff;
+  --text-secondary: #999999;
+}
+
+.settings-container {
+  padding: 40px;
+  padding-left: 80px;
+  color: var(--text-primary);
+  min-height: 100vh;
+  background: var(--bg-primary);
+}
+
+.settings-container h1 {
+  margin: 0 0 30px 0;
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.settings-section {
+  background: var(--bg-tertiary);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 30px;
+  border: 2px solid var(--bg-secondary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.settings-section h2 {
+  margin: 0 0 20px 0;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--bg-tertiary);
+}
+
+.setting-item:last-child {
+  margin-bottom: 0;
+}
+
+.setting-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.setting-icon {
+  font-size: 24px;
+  color: #0077ff;
+}
+
+.setting-text h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.setting-text p {
+  margin: 5px 0 0 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* Toggle Switch */
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--bg-tertiary);
+  transition: .4s;
+  border-radius: 34px;
+  border: 2px solid var(--text-secondary);
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--text-primary);
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+  background-color: #0077ff;
+}
+
+input:checked + .toggle-slider:before {
+  transform: translateX(24px);
+}
+
+/* Language Select */
+.language-select {
+  background: var(--bg-tertiary);
+  border: 2px solid var(--bg-secondary);
+  color: var(--text-primary);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.language-select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.3);
+  border-color: #0077ff;
+}
+
+/* Clickable Items */
+.setting-item.clickable {
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.setting-item.clickable:hover {
+  background: var(--bg-tertiary);
+}
+
+.arrow {
+  font-size: 24px;
+  color: var(--text-secondary);
+}
+
+/* Danger Zone */
+.setting-item.danger .setting-icon {
+  color: #ff4444;
+}
+
+.setting-item.danger:hover {
+  background: #4a3434;
+}
+
+/* Modal đổi mật khẩu */
+.edit-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.edit-modal {
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  padding: 32px;
+  width: 450px;
+  max-width: 90%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  border: 2px solid var(--bg-tertiary);
+}
+
+.edit-modal h2 {
+  margin: 0 0 20px;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  padding: 0 8px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.form-group input {
+  width: calc(100% - 24px);
+  padding: 12px;
+  border: 2px solid var(--bg-tertiary);
+  border-radius: 4px;
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #0066ff;
+  box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.2);
+}
+
+.error-message {
+  color: #ff4444;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+  padding: 0 8px;
+}
+
+.modal-buttons button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.cancel-button {
+  background-color: #444;
+  color: #fff;
+}
+
+.cancel-button:hover {
+  background-color: #555;
+}
+
+.save-button {
+  background-color: #0066ff;
+  color: #fff;
+}
+
+.save-button:hover {
+  background-color: #0052cc;
+} 
