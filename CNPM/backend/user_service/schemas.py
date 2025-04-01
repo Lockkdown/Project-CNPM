@@ -1,4 +1,5 @@
 from pydantic import BaseModel, EmailStr
+from uuid import UUID
 
 class UserBase(BaseModel):
     username: str
@@ -16,7 +17,7 @@ class UserUpdate(BaseModel):
     is_active: bool | None = None
 
 class User(UserBase):
-    id: int
+    id: UUID
     is_active: bool
     
     class Config:
@@ -27,7 +28,7 @@ class Token(BaseModel):
     token_type: str
 
 class TokenData(BaseModel):
-    user_id: int | None = None
+    user_id: UUID | None = None
 
 class PasswordReset(BaseModel):
     email: EmailStr

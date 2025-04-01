@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 from passlib.context import CryptContext
 from models import User
 from schemas import TokenData
+from uuid import UUID
 
 # Khởi tạo các dependencies
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -34,7 +35,7 @@ def verify_password(plain_password, hashed_password):
 def get_password_hash(password):
     return pwd_context.hash(password)
 
-def create_access_token(data: dict, expires_delta: datetime | None = None):
+def create_access_token(data: dict, expires_delta: timedelta | None = None):
     to_encode = data.copy()
     if expires_delta:
         expire = datetime.utcnow() + expires_delta
@@ -55,11 +56,11 @@ def get_current_user(
     )
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        user_id: int = payload.get("sub")
+        user_id: str = payload.get("sub")
         if user_id is None:
             raise credentials_exception
-        token_data = TokenData(user_id=user_id)
-    except JWTError:
+        token_data = TokenData(user_id=UUID(user_id))
+    except (JWTError, ValueError):
         raise credentials_exception
     
     user = db.query(User).filter(User.id == token_data.user_id).first()

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import ForgotPasswordForm from './components/ForgotPasswordForm';
+import ResetPasswordForm from './components/ResetPasswordForm';
 import HomePage from './components/HomePage';
 import CalendarPage from './components/CalendarPage';
 import NotificationsPage from './components/NotificationsPage';
@@ -25,6 +26,7 @@ function App() {
               <Route path="/login" element={<LoginForm />} />
               <Route path="/register" element={<RegisterForm />} />
               <Route path="/forgot-password" element={<ForgotPasswordForm />} />
+              <Route path="/reset-password" element={<ResetPasswordForm />} />
               <Route path="/" element={<Layout><HomePage /></Layout>} />
               <Route path="/home" element={<Layout><HomePage /></Layout>} />
               <Route path="/calendar" element={<Layout><CalendarPage /></Layout>} />

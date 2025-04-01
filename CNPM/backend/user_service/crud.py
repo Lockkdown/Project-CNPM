@@ -1,9 +1,10 @@
 from sqlalchemy.orm import Session
 import models
 from schemas import UserCreate, UserUpdate
-from utils import get_password_hash 
+from utils import get_password_hash
+from uuid import UUID
 
-def get_user(db: Session, user_id: int):
+def get_user(db: Session, user_id: UUID):
     return db.query(models.User).filter(models.User.id == user_id).first()
 
 def get_user_by_email(db: Session, email: str):
@@ -22,7 +23,7 @@ def create_user(db: Session, user: UserCreate):
     db.refresh(db_user)
     return db_user
 
-def update_user(db: Session, user_id: int, user: UserUpdate):
+def update_user(db: Session, user_id: UUID, user: UserUpdate):
     db_user = get_user(db, user_id)
     if not db_user:
         return None
@@ -38,7 +39,7 @@ def update_user(db: Session, user_id: int, user: UserUpdate):
     db.refresh(db_user)
     return db_user
 
-def delete_user(db: Session, user_id: int):
+def delete_user(db: Session, user_id: UUID):
     db_user = get_user(db, user_id)
     if not db_user:
         return None
@@ -47,10 +48,7 @@ def delete_user(db: Session, user_id: int):
     db.commit()
     return db_user
 
-def get_user_by_email(db: Session, email: str):
-    return db.query(models.User).filter(models.User.email == email).first()
-
-def update_user_password(db: Session, user_id: int, new_password: str):
+def update_user_password(db: Session, user_id: UUID, new_password: str):
     user = db.query(models.User).filter(models.User.id == user_id).first()
     if user:
         user.password = get_password_hash(new_password)
